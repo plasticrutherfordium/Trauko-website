@@ -1,0 +1,91 @@
+---
+
+
+
+
+
+
+
+import Section from "../components/common/Section.astro";
+import Layout from "../layouts/Layout.astro";
+import { getConfigurationCollection } from "../lib/utils";
+
+const { data: config } = await getConfigurationCollection();
+
+const title = `Background — ${config.personal.name}`;
+const description =
+  "The professional background and story of Javier Vergara: law, privacy, fintech, entrepreneurship, data, AI, and product building.";
+---
+
+<Layout>
+  <Fragment slot="head">
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {config.globalMeta.cardImage && (
+      <meta property="og:image" content={config.globalMeta.cardImage} />
+    )}
+    <meta property="og:url" content={`${config.site.baseUrl}/background`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {config.globalMeta.cardImage && (
+      <meta name="twitter:image" content={config.globalMeta.cardImage} />
+    )}
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="English" />
+    <link rel="canonical" href={`${config.site.baseUrl}/background`} />
+  </Fragment>
+  <Section class="py-4 my-8">
+    <div class="flex flex-col gap-8 pt-8">
+      <div class="flex flex-col gap-4">
+        <h1 class="font-display text-3xl sm:text-4xl leading-loose">Background</h1>
+        <p class="text-lg leading-relaxed zag-text zag-transition">
+          I am a barrister by training and a serial entrepreneur by practice. My work has moved through law, privacy, fintech, compliance, operations, and product building, but the recurring thread is building things.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h2 class="font-display text-lg sm:text-xl leading-loose">Law And Privacy</h2>
+        <p class="leading-relaxed zag-text zag-transition">
+          I became a barrister after studying law at Universidad de Chile, which means I am authorized to practice law in court. After that, I completed an MA in Information Technology Law at the University of Tartu, followed by an LLM in International Business Law at the University of Helsinki. That background shaped how I think about systems, risk, incentives, and institutions.
+        </p>
+        <p class="leading-relaxed zag-text zag-transition">
+          I have also built depth in privacy and data protection, including GDPR, privacy operations, and practical implementation for teams that need working systems rather than legal theatre.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h2 class="font-display text-lg sm:text-xl leading-loose">Work Before My Current Projects</h2>
+        <p class="leading-relaxed zag-text zag-transition">
+          Before focusing fully on my own projects, I worked across fintech, compliance, legal, customer operations, and privacy roles, including Wise, Salv, and 3Commas. Those environments gave me direct exposure to regulated operations, customer-facing systems, internal processes, and the gap between policy and execution.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h2 class="font-display text-lg sm:text-xl leading-loose">Entrepreneurship</h2>
+        <p class="leading-relaxed zag-text zag-transition">
+          Entrepreneurship is the center of gravity. FinKratt, GrowHub / Sunny LATAM, YoProcuro, and Settler are part of that earlier founder track. Today I am building Kontana, Atlaset, and Call Brad.
+        </p>
+        <p class="leading-relaxed zag-text zag-transition">
+          I am especially interested in products that combine privacy, data, AI, operations, and clear user control. The aim is not to chase trends. It is to build useful systems around real problems.
+        </p>
+      </div>
+
+      <div class="border-2 border-zag-dark bg-[#B8F35E] p-6 shadow-[6px_6px_0_#FF7A59] dark:border-zag-light dark:text-zag-dark">
+        <h2 class="font-display text-lg sm:text-xl leading-loose">Interests</h2>
+        <p class="mt-4 leading-relaxed">
+          I am an open software enthusiast, especially around Linux and tools that give users more control. I am also interested in philosophy, politics, Austrian economics, data, AI, and the habit of reading and studying seriously.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h2 class="font-display text-lg sm:text-xl leading-loose">Credentials</h2>
+        <p class="leading-relaxed zag-text zag-transition">
+          I am a barrister, having passed the bar exam and been authorized to practice law in court. I am also certified by the International Association of Privacy Professionals (IAPP).
+        </p>
+      </div>
+    </div>
+  </Section>
+</Layout>

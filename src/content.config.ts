@@ -3,6 +3,8 @@ import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { parse as parseToml } from "toml";
 
+const assetReference = z.string().min(1);
+
 /**
  * Loader and schema for the configuration collection.
  * It loads a TOML file from the `content/configuration.toml` path and defines the schema for the configuration data.
@@ -46,7 +48,7 @@ const configuration = defineCollection({
       /**
        * The URL of the card image for social media sharing.
        */
-      cardImage: z.url().optional(),
+      cardImage: assetReference.optional(),
 
       /**
        * Keywords for SEO, used in the `<meta name="keywords">` tag.
@@ -73,7 +75,7 @@ const configuration = defineCollection({
       /**
        * The URL of the card image for social media sharing.
        */
-      cardImage: z.url().optional(),
+      cardImage: assetReference.optional(),
 
       /**
        * Keywords for SEO, used in the `<meta name="keywords">` tag.
@@ -103,7 +105,7 @@ const configuration = defineCollection({
       /**
        * The URL of the card image for social media sharing.
        */
-      cardImage: z.url().optional(),
+      cardImage: assetReference.optional(),
 
       /**
        * Keywords for SEO, used in the `<meta name="keywords">` tag.
@@ -133,7 +135,7 @@ const configuration = defineCollection({
       /**
        * The URL of the card image for social media sharing.
        */
-      cardImage: z.url().optional(),
+      cardImage: assetReference.optional(),
 
       /**
        * Keywords for SEO, used in the `<meta name="keywords">` tag.
@@ -148,17 +150,17 @@ const configuration = defineCollection({
       /**
        * The title displayed in the hero section.
        */
-      title: z.string().default("Zaggonaut"),
+      title: z.string().default("Javier Vergara"),
 
       /**
        * The subtitle displayed in the hero section.
        */
-      subtitle: z.string().default("Retro-Inspired Theme &<br>Built for Astro"),
+      subtitle: z.string().default("Serial entrepreneur."),
 
       /**
        * The URL of the hero image, used as a background image in the hero section.
        */
-      image: z.url().optional(),
+      image: assetReference.optional(),
 
       /**
        * The text displayed in the call-to-action button in the hero section.
@@ -178,7 +180,7 @@ const configuration = defineCollection({
       /**
        * The name of the site owner or author, used in various places throughout the site.
        */
-      name: z.string().default("Zaggonaut"),
+      name: z.string().default("Javier Vergara"),
 
       /**
        * The GitHub profile URL of the site owner or author.
@@ -194,6 +196,11 @@ const configuration = defineCollection({
        * The LinkedIn profile URL of the site owner or author.
        */
       linkedinProfile: z.url().optional(),
+
+      /**
+       * The public email address of the site owner or author.
+       */
+      email: z.string().email().optional(),
     }),
 
     /**
@@ -232,8 +239,9 @@ const configuration = defineCollection({
      */
     menu: z.object({
       home: z.string().default("/"),
+      background: z.string().optional(),
       projects: z.string().default("/projects"),
-      blog: z.string().default("/blog"),
+      blog: z.string().optional(),
       /** Add other menu items here **/
     }),
   }),
@@ -247,49 +255,14 @@ const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./content/blogs" }),
   schema: z
     .object({
-      /**
-       * The title of the blog post.
-       */
       title: z.string(),
-
-      /**
-       * The slug for the blog post, used in the URL.
-       */
       slug: z.string().optional(),
-
-      /**
-       * A short description of the blog post, used in Open Graph metadata and as a fallback for SEO.
-       */
       description: z.string(),
-
-      /**
-       * The long description of the blog post, used in Open Graph metadata and as a fallback for SEO.
-       */
       longDescription: z.string().optional(),
-
-      /**
-       * The URL of the card image for social media sharing.
-       */
-      cardImage: z.url().optional(),
-
-      /**
-       * The tags associated with the blog post, used for categorization and filtering.
-       */
+      cardImage: assetReference.optional(),
       tags: z.array(z.string()).optional(),
-
-      /**
-       * The estimated reading time of the blog post, in minutes.
-       */
       readTime: z.number().optional(),
-
-      /**
-       * Whether the blog post is featured on the homepage.
-       */
       featured: z.boolean().default(false),
-
-      /**
-       * The timestamp of the blog post, used for sorting and displaying the date.
-       */
       timestamp: z.date().transform((val) => new Date(val)),
     })
     .transform((data) => {
@@ -338,12 +311,17 @@ const project = defineCollection({
       /**
        * The URL of the card image for social media sharing.
        */
-      cardImage: z.url().optional(),
+      cardImage: assetReference.optional(),
 
       /**
        * The tags associated with the project, used for categorization and filtering.
        */
       tags: z.array(z.string()).optional(),
+
+      /**
+       * Whether the project is current or former.
+       */
+      status: z.enum(["current", "former", "side"]).default("current"),
 
       /**
        * The github repository URL for the project.

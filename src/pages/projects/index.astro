@@ -1,4 +1,11 @@
 ---
+
+
+
+
+
+
+
 import { getCollection } from "astro:content";
 import Section from "../../components/common/Section.astro";
 import ProjectSnippet from "../../components/ProjectSnippet.astro";
@@ -6,8 +13,15 @@ import Layout from "../../layouts/Layout.astro";
 import { getConfigurationCollection } from "../../lib/utils";
 
 const projects = (await getCollection("project")).sort(
-	(a, b) => b.data.timestamp.valueOf() - a.data.timestamp.valueOf(),
+  (a, b) => b.data.timestamp.valueOf() - a.data.timestamp.valueOf(),
 );
+const currentProjects = projects.filter(
+  (project) => project.data.status === "current",
+);
+const formerProjects = projects.filter(
+  (project) => project.data.status === "former",
+);
+const sideProjects = projects.filter((project) => project.data.status === "side");
 
 const { data: config } = await getConfigurationCollection();
 ---
@@ -45,24 +59,66 @@ const { data: config } = await getConfigurationCollection();
     <link rel="canonical" href={`${config.site.baseUrl}/projects`} />
   </Fragment>
   <Section class="py-4 my-8">
-    <div class="flex items-center gap-4 pt-8 pb-16">
+    <div class="flex flex-col gap-4 pt-8 pb-16">
       <h1 class="font-display text-3xl sm:text-4xl leading-loose">{config.texts.projectsName}</h1>
+      <p class="max-w-2xl text-lg leading-relaxed zag-text zag-transition">
+        Current and former ventures across privacy-first consumer tools, asset mapping, operational GDPR, and founder-led product building.
+      </p>
     </div>
-    <ul>
-      {
-        projects.map((project) => (
-          <li>
-            <ProjectSnippet
-              title={project.data.title}
-              description={project.data.description}
-              url={`/projects/${project.data.slug}`}
-              githubUrl={project.data.githubUrl}
-              liveUrl={project.data.liveDemoUrl}
-              tags={project.data.tags ?? []}
-            />
-          </li>
-        ))
-      }
-    </ul>
+    <div class="flex flex-col gap-8">
+      <div>
+        <h2 class="font-display text-lg sm:text-xl leading-loose mb-6">Current Projects</h2>
+        <ul class="grid gap-6 lg:grid-cols-3">
+          {
+            currentProjects.map((project) => (
+              <li>
+                <ProjectSnippet
+                  title={project.data.title}
+                  description={project.data.description}
+                  url={project.data.liveDemoUrl}
+                  external
+                  githubUrl={project.data.githubUrl}
+                  tags={project.data.tags ?? []}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-lg sm:text-xl leading-loose mb-6">Former Projects</h2>
+        <ul class="grid gap-6 lg:grid-cols-3">
+          {
+            formerProjects.map((project) => (
+              <li>
+                <ProjectSnippet
+                  title={project.data.title}
+                  description={project.data.description}
+                  tags={project.data.tags ?? []}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-lg sm:text-xl leading-loose mb-6">Side Projects</h2>
+        <ul class="grid gap-6 lg:grid-cols-3">
+          {
+            sideProjects.map((project) => (
+              <li>
+                <ProjectSnippet
+                  title={project.data.title}
+                  description={project.data.description}
+                  url={project.data.liveDemoUrl}
+                  external
+                  tags={project.data.tags ?? []}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </Section>
 </Layout>

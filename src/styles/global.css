@@ -32,27 +32,22 @@
     U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/*
- Welcome! Zaggonaut colors originate from these theme variables, feel
- free to change them!
-*/
-
 @theme {
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --font-display: "press-start-2p", ui-monospace, monospace;
   --font-serif:
     "Literata Variable", ui-serif, Georgia, Cambria, "Times New Roman", Times,
     serif;
-  --color-zag-dark: var(--color-neutral-900);
-  --color-zag-dark-opaque: oklch(from var(--color-neutral-900) l c h / 0.5);
-  --color-zag-light: var(--color-neutral-100);
-  --color-zag-light-opaque: oklch(from var(--color-neutral-100) l c h / 0.5);
+  --color-zag-dark: #222222;
+  --color-zag-dark-opaque: oklch(from #222222 l c h / 0.5);
+  --color-zag-light: #ffffff;
+  --color-zag-light-opaque: oklch(from #ffffff l c h / 0.5);
   --color-zag-dark-muted: var(--color-neutral-600);
   --color-zag-light-muted: var(--color-neutral-400);
-  --color-zag-accent-light: var(--color-emerald-400);
-  --color-zag-accent-light-muted: var(--color-emerald-300);
-  --color-zag-accent-dark: var(--color-emerald-600);
-  --color-zag-accent-dark-muted: var(--color-emerald-800);
+  --color-zag-accent-light: #38b6ff;
+  --color-zag-accent-light-muted: #8fd8ff;
+  --color-zag-accent-dark: #ffde59;
+  --color-zag-accent-dark-muted: #d6b93f;
 }
 
 @layer base {
@@ -66,6 +61,36 @@
   ::selection {
     background-color: var(--color-zag-accent-light);
     color: var(--color-zag-dark-muted);
+  }
+
+  body {
+    background-image:
+      linear-gradient(
+        to right,
+        oklch(from var(--color-zag-dark) l c h / 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        oklch(from var(--color-zag-dark) l c h / 0.04) 1px,
+        transparent 1px
+      );
+    background-size: 32px 32px;
+  }
+
+  :where(.dark, .dark *) body {
+    background-image:
+      linear-gradient(
+        to right,
+        oklch(from var(--color-zag-light) l c h / 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        oklch(from var(--color-zag-light) l c h / 0.05) 1px,
+        transparent 1px
+      );
+    background-size: 32px 32px;
   }
 
   .zag-transition {

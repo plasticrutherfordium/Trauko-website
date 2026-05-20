@@ -1,7 +1,13 @@
 ---
+
+
+
+
+
+
+
 import { getCollection } from "astro:content";
 import Section from "../components/common/Section.astro";
-import FeaturedArticles from "../components/home/FeaturedArticles.astro";
 import FeaturedProjects from "../components/home/FeaturedProjects.astro";
 import Hero from "../components/home/Hero.astro";
 import Layout from "../layouts/Layout.astro";
@@ -10,16 +16,10 @@ import { getConfigurationCollection } from "../lib/utils";
 const { data: config } = await getConfigurationCollection();
 
 const featuredProjects = (
-	await getCollection("project", (e) => e.data.featured)
+  await getCollection("project", (e) => e.data.featured)
 ).map((e) => ({
-	...e.data,
-  url: `/projects/${e.data.slug}`,
-}));
-const featuredArticles = (
-	await getCollection("blog", (e) => e.data.featured)
-).map((e) => ({
-	...e.data,
-  url: `/blog/${e.data.slug}`,
+  ...e.data,
+  url: e.data.liveDemoUrl,
 }));
 ---
 
@@ -55,13 +55,44 @@ const featuredArticles = (
     <meta name="language" content="English" />
     <link rel="canonical" href={config.site.baseUrl} />
   </Fragment>
-  <Section class="my-16">
+  <Section class="my-20">
     <Hero />
+  </Section>
+  <Section class="my-16">
+    <div class="grid gap-8 border-2 border-zag-dark bg-[#FFF2B8] p-6 shadow-[6px_6px_0_#222222] dark:border-zag-light dark:bg-[#5A4A12] dark:shadow-[6px_6px_0_#ffffff] lg:grid-cols-[0.7fr_1.3fr] lg:p-8">
+      <h3 class="font-display text-lg sm:text-xl leading-loose zag-text zag-transition">Building</h3>
+      <div class="flex flex-col gap-4 text-lg leading-relaxed zag-text zag-transition">
+        <p>
+          I am a serial entrepreneur building practical products across privacy, personal finance, asset visibility, and operational GDPR.
+        </p>
+        <p>
+          Right now that means Kontana, Atlaset, and Call Brad: three different products with the same bias toward useful systems, clear execution, and less dependency on institutions that do not serve users well.
+        </p>
+      </div>
+    </div>
   </Section>
   <Section>
     <FeaturedProjects featuredProjects={featuredProjects} />
   </Section>
-  <Section>
-    <FeaturedArticles featuredArticles={featuredArticles} />
+  <Section class="my-16">
+    <div class="grid gap-8 border-2 border-zag-dark bg-white p-6 shadow-[6px_6px_0_#38B6FF] dark:border-zag-light dark:bg-zag-dark lg:grid-cols-[0.7fr_1.3fr]">
+      <h3 class="font-display text-lg sm:text-xl leading-loose">Founder Track</h3>
+      <p class="zag-text zag-transition leading-relaxed">
+        My work has moved through law, privacy, fintech operations, and startup building, but the consistent thread is entrepreneurship: finding messy problems, shaping them into products, and learning by shipping.
+      </p>
+    </div>
+  </Section>
+  <Section class="my-16">
+    <div class="grid gap-8 border-2 border-zag-dark bg-[#B8F35E] p-6 shadow-[6px_6px_0_#FF7A59] dark:border-zag-light dark:text-zag-dark lg:grid-cols-[0.7fr_1.3fr]">
+      <h3 class="font-display text-lg sm:text-xl leading-loose">Interests</h3>
+      <div class="flex flex-col gap-4 leading-relaxed">
+        <p>
+          I am an open software enthusiast, with Linux as the main entry point: tools that users can inspect, modify, understand, and actually own.
+        </p>
+        <p>
+          I also spend a lot of time reading and studying philosophy, politics, Austrian economics, technology, data, and AI.
+        </p>
+      </div>
+    </div>
   </Section>
 </Layout>

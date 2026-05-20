@@ -1,12 +1,25 @@
 ---
+
+
+
+
+
+
+
 export type Props = {
-	url: string;
-	class?: string;
-	external?: boolean;
-	"aria-label"?: string;
+  url: string;
+  class?: string;
+  external?: boolean;
+  showExternalIcon?: boolean;
+  "aria-label"?: string;
 };
 
-const { url, external, class: className } = Astro.props;
+const {
+  url,
+  external,
+  showExternalIcon = true,
+  class: className,
+} = Astro.props;
 ---
 
 <a
@@ -20,7 +33,7 @@ const { url, external, class: className } = Astro.props;
 >
   <slot />
   {
-    external ? (
+    external && showExternalIcon ? (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-6 h-6"

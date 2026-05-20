@@ -2,56 +2,57 @@
 # we need to prefix all configuration keys with an underscore.
 
 [_.site]
-baseUrl = "http://zaggonaut.dev"
+baseUrl = "https://javiervergara.eu"
 
 [_.globalMeta]
-title = "Zaggonaut"
-description = "Retro-Inspired Theme & Built for Astro"
-longDescription = "Zaggonaut is a retro-inspired theme for Astro, built using TypeScript, TailwindCSS, and Astro."
-cardImage = "https://zaggonaut.dev/michael-dam-unsplash.webp"
-keywords = ["web development", "design", "technology"]
+title = "Javier Vergara"
+description = "Serial entrepreneur building privacy-first products, asset-mapping tools, and practical GDPR systems."
+longDescription = "Javier Vergara is a serial entrepreneur building Kontana, Atlaset, and Call Brad across privacy-first consumer tools, asset mapping, and practical GDPR operations."
+cardImage = "https://javiervergara.eu/social-card.svg"
+keywords = ["Javier Vergara", "serial entrepreneur", "Kontana", "Atlaset", "Call Brad", "GDPR", "privacy", "asset mapping", "cash tracker"]
 
 [_.blogMeta]
-title = "Zaggonaut Blog"
-description = "Practical wisdom, unfiltered thoughts, and hot takes."
-longDescription = "Web development, tech trends, and the occasional programming mishap."
-cardImage = "https://zaggonaut.dev/michael-dam-unsplash.webp"
-keywords = ["web development", "design", "technology"]
+title = "Blog — Javier Vergara"
+description = "Short notes on entrepreneurship, product building, privacy, and practical systems."
+longDescription = "Notes by Javier Vergara on entrepreneurship, product building, privacy-first tools, and practical systems."
+cardImage = "https://javiervergara.eu/social-card.svg"
+keywords = ["Javier Vergara", "entrepreneurship", "product building", "privacy", "startups"]
 
 [_.projectMeta]
-title = "Zaggonaut Projects"
-description = "A list of my web development projects and developer tools."
-longDescription = "All of my projects, including both frontend and full-stack applications."
-cardImage = "https://zaggonaut.dev/michael-dam-unsplash.webp"
-keywords = ["web development", "design", "technology"]
+title = "Projects — Javier Vergara"
+description = "Current and former ventures built by Javier Vergara."
+longDescription = "Current and former projects by Javier Vergara, including Kontana, Atlaset, Call Brad, FinKratt, GrowHub / Sunny LATAM, YoProcuro, and Settler."
+cardImage = "https://javiervergara.eu/social-card.svg"
+keywords = ["Kontana", "Atlaset", "Call Brad", "FinKratt", "GrowHub", "Sunny LATAM", "YoProcuro", "Settler", "serial entrepreneur"]
 
 [_.notFoundMeta]
-title = "Zaggonaut 404"
+title = "Javier Vergara 404"
 description = "The page you are looking for does not exist."
-longDescription = "The page you are looking for does not exist. Maybe it never existed. Spooky."
-cardImage = "https://zaggonaut.dev/michael-dam-unsplash.webp"
+longDescription = "The page you are looking for does not exist."
+cardImage = "https://javiervergara.eu/social-card.svg"
 
 [_.hero]
-title = "Zaggonaut"
-subtitle = "Retro-Inspired Theme &<br />Built for Astro"
-image = "https://zaggonaut.dev/michael-dam-unsplash.webp"
+title = "Javier Vergara"
+subtitle = "Serial entrepreneur."
+image = "/javier-profile.png"
 ctaText = "View Projects"
 ctaUrl = "/projects"
 
 [_.personal]
-name = "Zaggonaut"
-githubProfile = "https://github.com/RATIU5/zaggonaut"
-twitterProfile = "https://twitter.com"
-linkedinProfile = "https://linkedin.com/"
+name = "Javier Vergara"
+email = "javier@trauko.eu"
+twitterProfile = "https://x.com/mohiz683md"
+linkedinProfile = "https://www.linkedin.com/in/javier-vergara-eu"
 
 [_.texts]
-articlesName = "Articles"
+articlesName = "Blog"
 projectsName = "Projects"
 viewAll = "View All"
-noArticles = "No articles found."
+noArticles = "No blog posts found."
 noProjects = "No projects found."
 
 [_.menu]
 home = "/"
+background = "/background"
 projects = "/projects"
 blog = "/blog"

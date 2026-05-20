@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Javier Vergara social card</title>
+  <desc id="desc">Social preview card for Javier Vergara's personal website.</desc>
+  <rect width="1200" height="630" fill="#f7f7f5"/>
+  <rect x="80" y="80" width="1040" height="470" fill="#ffffff" stroke="#222222" stroke-width="6"/>
+  <path d="M120 126h240" stroke="#38B6FF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M840 504h240" stroke="#FFDE59" stroke-width="18" stroke-linecap="round"/>
+  <text x="120" y="276" fill="#111111" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="72" font-weight="700">Javier Vergara</text>
+  <text x="124" y="352" fill="#222222" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="34">Serial entrepreneur building privacy-first tools,</text>
+  <text x="124" y="402" fill="#222222" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="34">asset maps, and practical GDPR systems.</text>
+</svg>

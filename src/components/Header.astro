@@ -1,14 +1,28 @@
 ---
+
+
+
+
+
+
+
 import { getConfigurationCollection } from "../lib/utils";
 import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const { data: config } = await getConfigurationCollection();
+
+const menuLabels = {
+  home: "Home",
+  background: "Background",
+  projects: "Projects",
+  blog: "Blog",
+};
 ---
 
-<header class="zag-bg zag-border-b zag-transition sticky top-0 w-full z-10">
+<header class="zag-bg zag-border-b zag-transition sticky top-0 z-50 w-full">
   <div
-    class="zag-bg zag-transition sm:hidden relative z-50 py-4 flex items-center"
+    class="zag-bg zag-transition relative z-50 flex items-center py-4 sm:hidden"
   >
     <button class="px-4" type="button" aria-label="Toggle navigation menu">
       <svg
@@ -24,23 +38,67 @@ const { data: config } = await getConfigurationCollection();
     </button>
   </div>
   <nav
-    class="zag-bg zag-border-b zag-transition fixed sm:relative inset-x-0 top-0 h-auto sm:px-4 flex justify-between flex-col gap-8 py-4 text-xl sm:flex-row max-w-2xl mx-auto sm:pt-4 sm:border-none"
+    class="zag-bg zag-border-b zag-transition fixed inset-x-0 top-0 z-50 mx-auto flex h-auto max-w-5xl flex-col justify-between gap-8 py-4 text-xl sm:relative sm:flex-row sm:border-none sm:px-6 sm:pt-4"
   >
     <div
       class="flex flex-col font-mono font-medium gap-4 sm:flex-row px-4 sm:px-0 mt-16 sm:mt-0"
     >
       {
         Object.entries(config.menu).map((i) => (
-          <Anchor url={i[1]}>{i[0]}</Anchor>
+          <Anchor url={i[1]}>{menuLabels[i[0]] ?? i[0]}</Anchor>
         ))
       }
     </div>
     <div class="flex gap-4 justify-between px-4 sm:px-0">
       {
+        config.personal.twitterProfile && (
+          <Anchor
+            url={config.personal.twitterProfile}
+            aria-label={`${config.personal.name} X Profile`}
+            external
+            showExternalIcon={false}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              class="zag-fill zag-transition"
+            >
+              <title>X</title>
+              <path d="m17.687 3.063l-4.996 5.711l-4.32-5.711H2.112l7.477 9.776l-7.086 8.099h3.034l5.469-6.25l4.78 6.25h6.102l-7.794-10.304l6.625-7.571zm-1.064 16.06L5.654 4.782h1.803l10.846 14.34z" />
+            </svg>
+          </Anchor>
+        )
+      }
+      {
+        config.personal.linkedinProfile && (
+          <Anchor
+            url={config.personal.linkedinProfile}
+            aria-label={`${config.personal.name} LinkedIn Profile`}
+            external
+            showExternalIcon={false}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              class="zag-fill zag-transition"
+            >
+              <title>LinkedIn</title>
+              <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.12 19h-3.08v-9h3.08v9zm-1.54-10.29c-.99 0-1.79-.8-1.79-1.79s.8-1.79 1.79-1.79 1.79.8 1.79 1.79-.8 1.79-1.79 1.79zm13.16 10.29h-3.08v-4.89c0-1.16-.02-2.64-1.61-2.64s-1.86 1.26-1.86 2.57v4.96h-3.08v-9h2.96v1.23h.04c.41-.78 1.4-1.6 2.88-1.6 3.08 0 3.65 2.03 3.65 4.66v4.71z" />
+            </svg>
+          </Anchor>
+        )
+      }
+      {
         config.personal.githubProfile && (
           <Anchor
             url={config.personal.githubProfile}
             aria-label={`${config.personal.name} GitHub Profile`}
+            external
+            showExternalIcon={false}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
