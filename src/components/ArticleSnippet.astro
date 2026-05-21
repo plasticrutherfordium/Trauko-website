@@ -15,21 +15,26 @@
 
 
 import Anchor from "./common/Anchor.astro";
+import { processArticleDate } from "../lib/utils";
 
 export type Props = {
   title: string;
   description: string;
   url: string;
   tags: string[];
+  timestamp: Date;
 };
 
-const { title, description, url, tags } = Astro.props;
+const { title, description, url, tags, timestamp } = Astro.props;
 ---
 
 <div class="relative flex flex-col gap-3 mb-8 hover-zag-dotted-grid">
   <Anchor url={url} class="text-xl">
     {title}
   </Anchor>
+  <time datetime={timestamp.toISOString()} class="text-sm zag-text zag-transition opacity-75">
+    {processArticleDate(timestamp)}
+  </time>
   <p class="zag-text zag-transition">
     {description}
   </p>

@@ -72,6 +72,7 @@ const { data: config } = await getConfigurationCollection();
                 description={article.data.description}
                 url={`/blog/${article.data.slug}`}
                 tags={article.data.tags ?? []}
+                timestamp={article.data.timestamp}
               />
             </li>
           ))

@@ -17,7 +17,7 @@
 import Section from "../components/common/Section.astro";
 import Prose from "../components/Prose.astro";
 import type { ArticleFrontmatter } from "../lib/types";
-import { getConfigurationCollection } from "../lib/utils";
+import { getConfigurationCollection, processArticleDate } from "../lib/utils";
 import Layout from "./Layout.astro";
 
 type Props = { frontmatter: ArticleFrontmatter };
@@ -78,6 +78,9 @@ const { data: config } = await getConfigurationCollection();
       <p class="zag-text zag-transition leading-relaxed">
         {frontmatter.description}
       </p>
+      <time datetime={frontmatter.timestamp.toISOString()} class="text-sm zag-text zag-transition opacity-75">
+        {processArticleDate(frontmatter.timestamp)}
+      </time>
       <div class="flex flex-wrap text-sm gap-2">
         {
           frontmatter.tags
