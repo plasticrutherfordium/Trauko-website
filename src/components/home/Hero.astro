@@ -59,6 +59,13 @@ const { data: config } = await getConfigurationCollection();
             </Anchor>
           )
         }
+        {
+          config.personal.email && (
+            <Anchor url={`mailto:${config.personal.email}`}>
+              {config.personal.email}
+            </Anchor>
+          )
+        }
       </div>
     </div>
   </div>
